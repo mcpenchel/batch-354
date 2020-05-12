@@ -1,0 +1,40 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to "#", class: "navbar-brand" do %>
+    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <span>Current user: <%= current_user.email %></span>
+  <% end %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to "Home", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Messages", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <% image_url = current_user.email == "evil.matt@gmail.com" ? "https://scontent.fsdu5-1.fna.fbcdn.net/v/t1.0-9/11233333_1681200208763411_8070026875501758047_n.jpg?_nc_cat=105&_nc_sid=7aed08&_nc_ohc=DmZRi7IciX4AX-YSMi0&_nc_ht=scontent.fsdu5-1.fna&oh=9f6385f5b30d7b6c5bd9b6c9c579c321&oe=5ED60356" : "https://scontent.fsdu5-1.fna.fbcdn.net/v/t1.0-9/52465982_2249385171944909_754701212187623424_n.jpg?_nc_cat=106&_nc_sid=85a577&_nc_ohc=UBGUR0KzwCQAX_TI6q_&_nc_ht=scontent.fsdu5-1.fna&oh=949115941fe4d264e4f71302ea97c67a&oe=5ED71036" %>
+          <%= image_tag image_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
